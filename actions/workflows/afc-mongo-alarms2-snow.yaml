@@ -1,0 +1,22 @@
+version: 1.0
+
+description: A workflow to copy AFC alarms from mongo and into snow.
+
+tasks:
+  getalerts:
+    action: arubafc.get_mongo_alarms
+    next:
+      - when: <% succeeded() %>
+        publish:
+          - alarms: <% result().result %>
+        do: snowalerts
+
+  snowalerts:
+    with: <% ctx().alarms %>
+    action: servicenow.create_record table="u_afc_aruba_alarms" payload='<% item() %>'
+    next:
+      - when: <% succeeded() %>
+        do: processalarms
+
+  processalarms:
+    action: arubafc.process_alarms alarms=<% ctx().alarms %>

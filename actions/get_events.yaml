@@ -1,0 +1,7 @@
+---
+name: get_events
+pack: arubafc
+description: Get an array of events from the AFC controller
+runner_type: python-script
+entry_point: get_events.py
+enabled: true

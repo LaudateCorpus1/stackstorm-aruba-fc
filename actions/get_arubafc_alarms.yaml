@@ -1,0 +1,6 @@
+---
+name: get_arubafc_alarms
+description: A workflow for getting AFC alarms into stackstorm.
+runner_type: orquesta
+entry_point: workflows/get_arubafc_alarms.yaml
+enabled: true

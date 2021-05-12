@@ -1,0 +1,6 @@
+---
+name: get_arubafc_events
+description: A workflow for getting AFC events into stackstorm.
+runner_type: orquesta
+entry_point: workflows/get_arubafc_events.yaml
+enabled: true

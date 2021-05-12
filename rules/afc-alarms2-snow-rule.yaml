@@ -1,0 +1,13 @@
+---
+name: "afc-alarms2-snow-rule"
+description: "Get Aruba AFC alarms from mongo and send to service now."
+enabled: false
+
+trigger:
+  type: "core.st2.IntervalTimer"
+  parameters:
+    delta: 5
+    unit: minutes
+
+action:
+  ref: "arubafc.afc-mongo-alarms2-snow"

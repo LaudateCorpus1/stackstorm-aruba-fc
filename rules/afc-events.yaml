@@ -1,0 +1,13 @@
+---
+name: "afc-events"
+description: "Get Aruba AFC events and load mongo databases."
+enabled: false
+
+trigger:
+  type: "core.st2.IntervalTimer"
+  parameters:
+    delta: 5
+    unit: minutes
+
+action:
+  ref: "arubafc.get_arubafc_events"

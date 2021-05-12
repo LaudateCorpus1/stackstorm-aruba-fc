@@ -1,0 +1,11 @@
+---
+name: load-afc-alarms
+pack: arubafc
+description: loads the alarms from the AFC into the mongo DB
+runner_type: python-script
+entry_point: load-afc-alarms.py
+enabled: true
+parameters:
+  alarms:
+    required: true
+    type: array

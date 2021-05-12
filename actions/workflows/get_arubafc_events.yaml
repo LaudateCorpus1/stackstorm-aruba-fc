@@ -1,0 +1,15 @@
+version: 1.0
+
+description: A workflow to copy AFC events into a mongo database.
+
+tasks:
+  getalarms:
+    action: arubafc.get_events
+    next:
+      - when: <% succeeded() %>
+        publish:
+          - events: <% result().result %>
+        do: sendmongo
+
+  sendmongo:
+    action: arubafc.load-afc-events events=<% ctx().events %>

@@ -1,0 +1,6 @@
+---
+ipaddress: "172.20.8.73"
+username: "admin"
+password: "Plexxi100!"
+dbuser: "appUser"
+dbpass: 'passwordForAppUser'

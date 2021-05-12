@@ -1,0 +1,7 @@
+---
+name: get_switches
+pack: arubafc
+description: Get an array of switches from the afc controller
+runner_type: python-script
+entry_point: get_switches.py
+enabled: true

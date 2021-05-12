@@ -1,0 +1,6 @@
+---
+name: afc-mongo-alarms2-snow
+description: A workflow for sending AFC alarms from mongo to servicenow.
+runner_type: orquesta
+entry_point: workflows/afc-mongo-alarms2-snow.yaml
+enabled: true

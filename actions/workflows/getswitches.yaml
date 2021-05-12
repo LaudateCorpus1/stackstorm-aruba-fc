@@ -1,0 +1,15 @@
+version: 1.0
+
+description: A workflow to copy switch inventory from afc to servicenow.
+
+tasks:
+  getswitches:
+    action: arubafc.get_switches
+    next:
+      - when: <% succeeded() %>
+        publish:
+          - switches: <% result().result %>
+        do: sendsnow
+
+  sendsnow:
+    action: arubafc.sendsnow switches=<% ctx().switches %>
