@@ -47,3 +47,22 @@ Actions are defined in two groups:
 * ``sendsnow``
 * ``get-arubafc-events``
 * ``getswitches``
+
+This application uses the mongo db installed by StackStorm. Since the DB is secured
+you will need to log into the StackStorm mongo DB as a StackStorm admin and create a separate DB
+
+# Companion mongengine to work with StackStorm mongo DB
+
+log in with admin first
+-------------------------------------------------------------------------------------
+mongo -u admin -p UkIbDILcNbMhkh3KtN6xfr9h admin  (passwd in /etc/st2/st2.config)
+
+# Then create a new user
+db.createUser({user: "appUser",pwd: "passwordForAppUser",roles: [ { role: "readWrite", db: "app_db" } ]})
+
+If you want to look at the mongo collections via the mongo client do this:
+
+
+```
+mongo -u appUser -p passwordForAppUser admin
+```
