@@ -1,14 +1,14 @@
 ---
-ipaddress:
+cvp:
   description: "IP address of the Arista Cloud Vision Portal server (e.g.: 'fqdn.to.device' or '10.10.10.10')"
   type: "string"
   secret: false
   required: true
-username:
+cvp_user:
   description: "Username for the Arista Cloud Vision Portal server"
   type: "string"
   required: true
-password:
+cvp_word:
   description: "Password for the Arista Cloud Vision Portal server user account"
   type: "string"
   secret: true

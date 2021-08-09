@@ -19,32 +19,11 @@
 # __email__ = "rick.a.kauffman@hpe.com"
 
 
-from pyhpecfm import system
-from lib.actions import AfcBaseAction
-import datetime
+from lib.actions import AristaBaseAction
 
-class alarmLookup(AfcBaseAction):
+class alarmLookup(AristaBaseAction):
     def run(self):
-        afc_audits = system.get_audit_logs(self.client)
-        if isinstance(afc_audits, list):
-            # Create a empty list for alarms
-            alarm_data = []
-            # Loop through cfm_audits and process ALARMS
-            for alarm in afc_audits:
-                typex = alarm['record_type']
-                if typex == 'ALARM':
-                    # Build dictionary to add to list
-                    created = int(alarm['log_date'] / 10)
-                    out = {
-                          'u_eventtype': alarm['data']['event_type'],
-                          'u_typex': alarm['record_type'],
-                          'u_sev': alarm['severity'],
-                          'u_uuid': alarm['uuid'],
-                          'u_desc': alarm['description'],
-                          'u_created': created,
-                          'u_snowack' : 'no'
-                          }
-                    alarm_data.append(out)
+        cvpinfo = client.api.get_cvp_info()
 
-            return (True, alarm_data)
-        return (False, afc_audits)
+        return (True, cvpinfo)
+      
