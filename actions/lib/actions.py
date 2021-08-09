@@ -1,4 +1,4 @@
-# (C) Copyright 2019 Hewlett Packard Enterprise Development LP.
+# (C) Copyright 2021 Hewlett Packard Enterprise Development LP.
 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,23 +18,25 @@
 # __maintainer__ = "Rick Kauffman"
 # __email__ = "rick.a.kauffman@hpe.com"
 
-import pymongo
 from pymongo import MongoClient
-from pyhpecfm.client import CFMClient
+from cvprac.cvp_client import CvpClient
+import urllib3
 from st2common.runners.base_action import Action
 
-class AfcBaseAction(Action):
+class AristaBaseAction(Action):
     def __init__(self,config):
-        super(AfcBaseAction, self).__init__(config)
+        super(AristaBaseAction, self).__init__(config)
         self.client = self._get_client()
 
     def _get_client(self):
-        ipaddress = self.config['ipaddress']
-        username = self.config['username']
-        password = self.config['password']
+        ipaddress = self.config['cvp']
+        username = self.config['cvp_user']
+        password = self.config['cvp_word']
 
-        client = CFMClient(ipaddress, username, password)
-        client.connect()
+        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+        client = CvpClient()
+        # Connect to the CVP server
+        client.connect([cvp], cvp_user, cvp_word)
 
         return client
 

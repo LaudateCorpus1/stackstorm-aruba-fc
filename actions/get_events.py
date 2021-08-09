@@ -15,7 +15,6 @@
 # __author__ = "@netwookie"
 # __credits__ = ["Rick Kauffman"]
 # __license__ = "Apache2.0"
-# __version__ = "1.0.0"
 # __maintainer__ = "Rick Kauffman"
 # __email__ = "rick.a.kauffman@hpe.com"
 
@@ -24,29 +23,28 @@ from pyhpecfm import system
 from lib.actions import AfcBaseAction
 import datetime
 
-class eventLookup(AfcBaseAction):
+class alarmLookup(AfcBaseAction):
     def run(self):
         afc_audits = system.get_audit_logs(self.client)
         if isinstance(afc_audits, list):
             # Create a empty list for alarms
-            event_data = []
-            # Loop through cfm_audits and process EVENTS
-            for event in afc_audits:
-                typex = event['record_type']
-                if typex == 'EVENT':
-                    created = int(event['log_date'] /10)
+            alarm_data = []
+            # Loop through cfm_audits and process ALARMS
+            for alarm in afc_audits:
+                typex = alarm['record_type']
+                if typex == 'ALARM':
                     # Build dictionary to add to list
+                    created = int(alarm['log_date'] / 10)
                     out = {
-                          'u_eventtype': event['data']['event_type'],
-                          'u_typex': event['record_type'],
-                          'u_sev': event['severity'],
-                          'u_uuid': event['uuid'],
-                          'u_desc': event['description'],
-                          'u_name' : event['data']['object_name'],
+                          'u_eventtype': alarm['data']['event_type'],
+                          'u_typex': alarm['record_type'],
+                          'u_sev': alarm['severity'],
+                          'u_uuid': alarm['uuid'],
+                          'u_desc': alarm['description'],
                           'u_created': created,
-                          'u_typeo' : event['data']['object_type']
+                          'u_snowack' : 'no'
                           }
-                    event_data.append(out)
+                    alarm_data.append(out)
 
-            return (True, event_data)
+            return (True, alarm_data)
         return (False, afc_audits)

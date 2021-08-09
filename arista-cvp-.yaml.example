@@ -1,0 +1,7 @@
+---
+cvp: "10.132.0.6"
+cvp_user: "cvpadmin"
+cvp_word: "siesta3"
+dbuser: "appUser"
+dbpass: 'passwordForAppUser'
+

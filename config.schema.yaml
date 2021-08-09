@@ -1,15 +1,15 @@
 ---
 ipaddress:
-  description: "IP address of the AFC controller (e.g.: 'fqdn.to.device' or '10.10.10.10')"
+  description: "IP address of the Arista Cloud Vision Portal server (e.g.: 'fqdn.to.device' or '10.10.10.10')"
   type: "string"
   secret: false
   required: true
 username:
-  description: "Username for the AFC controller"
+  description: "Username for the Arista Cloud Vision Portal server"
   type: "string"
   required: true
 password:
-  description: "Password for the AFC controller user account"
+  description: "Password for the Arista Cloud Vision Portal server user account"
   type: "string"
   secret: true
   required: true

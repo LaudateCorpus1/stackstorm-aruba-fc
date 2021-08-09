@@ -1,0 +1,7 @@
+---
+name: get_cvpinfo
+pack: arista-cvp
+description: Get system version from the CVP controller
+runner_type: python-script
+entry_point: get_cvpinfo.py
+enabled: true

@@ -1,7 +1,0 @@
----
-name: create_backup
-pack: arubafc
-description: create a new backup on the Aruba Fabric Composer controller
-runner_type: python-script
-entry_point: create_backup.py
-enabled: true
